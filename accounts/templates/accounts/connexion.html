@@ -1,0 +1,64 @@
+
+    {% extends 'articles/base.html' %}
+{% load static %}
+
+{% block title %}Connexion{% endblock %}
+
+    {% block contentbase %}
+    
+<section class="bg-tertiary" style="padding-top: 80px;" >
+
+    <h1>Connexion</h1>
+        
+    
+        <form method="post" >
+            {% csrf_token %}
+            <fieldset class="container border border-w-9 border-dark rounded mb-3 " >
+                <legend><h2>Compte</h2></legend>
+                <div class="row m-3 mt-3">
+                    <div class="col-2 "></div>
+                    <div class="col-8 ">
+                    
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                    </div>
+                </div>                       
+                
+                <div class="row m-3">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                    
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                        
+                    </div>
+                </div>
+
+                <div class="m-3">
+                    <div class="row ">
+                        <div class="col-5"></div>
+                        <div class="col-6">
+                                                
+                                <button type="submit" class="btn btn-primary border-dark ">Connexion</button>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2"></div>
+                    
+                    <div class="col-8 mb-3 ">
+                        <a href="#">mots de passe oublié ?</a> <br>
+                        <a href="{% url 'enregistrement' %}">creer un compte ?</a>
+                    </div>
+                </div>
+            
+            
+            </fieldset>
+        </form>
+           
+        
+</section>
+    {% endblock %}
+ 

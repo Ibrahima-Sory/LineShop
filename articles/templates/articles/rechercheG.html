@@ -1,0 +1,61 @@
+
+{% extends 'articles/baseG.html' %}
+{% load static %}
+
+{% block title %}Gestion{% endblock %}
+
+    {% block contentbase %}
+
+    
+
+    <section style="margin-top: 150px;" >
+
+        <h2> Resultat pour  " {{ recherche }} "</h2>
+        
+        <table class="border " >
+            <thead  >
+                
+                <tr class="border">
+                    <td class="border">Image</td>
+                    <td class="border">Categorie</td>
+                    <td class="border">Model</td>
+                    <td class="border">Type</td>
+                    <td class="border">Description</td>
+                    <td class="border">Marque</td>
+                    <td class="border">Prix</td>
+                    <td class="border">Specificité</td>
+                    <td class="border">En Promo ?</td>
+                    <td class="border">Prix promo </td>
+                    <td class="border">Stock</td>
+                    <td class="border">Modification</td>
+                    <td class="border">Supprimer</td>
+                </tr>
+
+            </thead>
+            <tbody >
+                {% for article in articles %}
+                    <tr class="border">
+                    <td class="border"><img src="{{ article.image.url }}" alt="imageArticle" class="img-fluid rounded-center " style="height: 80px;" > </td>
+                    <td class="border"> {{ article.categorie }} </td>
+                    <td class="border"> {{ article.model }} </td>
+                    <td class="border"> {{ article.type }} </td>
+                    <td class="border"> {{ article.description }} </td>
+                    <td class="border"> {{ article.marque }} </td>
+                    <td class="border"> {{ article.prix_formater}} </td>
+                    <td class="border"> {{ article.specificité }} </td>
+                    <td class="border"> {{ article.enpromo }} </td>
+                    <td class="border"> {{ article.prixPromo_formater}} </td>
+                    <td class="border"> {{ article.stock }} </td>
+                    <td class="border"><a href="{% url 'modifierArt' article.id %}">modifier</a></td>
+                    <td class="border"><a href="{% url 'supArticle' article.id %}">X</a></td>
+                    </tr>
+    
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </section>
+
+  
+
+{% endblock %}

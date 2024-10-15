@@ -1,0 +1,117 @@
+
+
+    {% extends 'articles/base.html' %}
+{% load static %}
+
+
+
+{% block title %}Panier{% endblock %}
+
+    {% block contentbase %}
+    
+
+    <div class="container-fluid " style="margin-top: 150px;">
+        <div class="row" style="margin: 30px;" >
+            <h4>Panier</h4>
+
+           
+            {% block content3 %}
+           
+            
+            <div class="col-md-5  col-sm-12 bg-dark text-white p-4 mt-3"  >
+                <div class="" style="margin: 10px;">
+                    <H3>Total:{{prixTotal}} FG</H3>
+                    <button class="bg-success  border rounded p-2 pe-5 ps-5" >Paiement</button>
+                </div>   
+    
+                <div class="">
+                    <p>Nous acceptions:  </p>
+                    <p>
+                        <img class="brand" src="{% static 'articles/orangeMoney.png' %}"alt="OM" style="height: 35px;">
+                        <img class="brand" src="{% static 'articles/visa.png' %}"alt="visa" style="height: 35px;">
+                        <img class="brand" src="{% static 'articles/paypal.png' %}"alt="paypal" style="height: 35px;">
+                        <img class="brand" src="{% static 'articles/mastercard.png' %}"alt="mastercard" style="height: 35px;">
+                        
+                    </p>
+                    
+                </div>
+
+            </div>
+            <div class="col-2"></div>
+            
+            {% for article in articlesPanier %}    
+            <div class="col-md-5  col-12 ms-1 me-5" style="margin: 20px;">
+                <div class="row">
+                
+                    <div class="card border-dark" style="margin: 5px;">
+                        <div class="row " >
+                            <div class="card-item col-md-2 col-xs-2 col-5  "  style="padding: 5px;" >
+                                <img src="{{ article.article.image.url }}" alt="imageArticle" class="img-fluid rounded-center " style="height: 80px;" >
+                            </div>
+                            <div class="card-header col-md-3 col-xs-2 col-7 border">
+                                <span> {{article.article.model}}</span>
+                                
+                            </div>
+                            <div class="card-header col-md-3 col-xs-12 col-12 border">
+                                    Quantité:
+                                    <form role="post">
+                                         {% csrf_token %} 
+                                        
+                                        <input type="number" id="quantite-{{article.id}}" min="1" value="{{ article.quantite }}" max="50" onchange="quantite_ajour({{ article.id }})" class="form" >
+                                   
+                                      
+                                    </form>  
+                                    
+                            </div>
+                            <div class="card-header  col-md-3 col-xs-10 col-10 border" >
+                                {% if article.article.enpromo %}
+                                Prix Unitaire:
+                                <span class="text-muted" style="text-decoration: line-through;"> {{article.article.prix_formater}} FG</span>
+                                <span>{{article.article.prixPromo_formater}} FG</span> 
+                                
+                               
+                                {% else %}
+                                <span>Prix Unitaire: {{article.article.prix_formater}} FG</span>
+
+                                {% endif %}
+                                                           
+                            </div>
+                            <div class="card-footer col-md-1 col-xs-2 col-2 bg-dark  ">
+                                <a href="{% url 'supPanier' article.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="70" fill="red" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                                  </svg></a>
+                            </div>
+
+
+                        </div>
+                            
+                    </div>
+
+                </div>
+            </div> 
+            
+            
+            {% empty %}
+
+            <div class="col-md-8 border " style="margin: auto;">
+                <div class="card" style="margin: 10px;">
+                   
+
+                    <div> Votre panier est vide ! Veillez ajouter des articles .</div>
+                        
+                </div>
+            </div>
+            
+
+            {% endfor %}
+            
+
+            {% endblock %}         
+
+            <a class="text-decoration-none text-dark p-2 pe-5 ps-5" href="{% url 'index' %}"><button class="bg-secondary  border rounded p-2 pe-5 ps-5" > Continuer les achats  </button> </a>
+         
+        </div>
+    </div>
+
+    {% endblock %}
+ 

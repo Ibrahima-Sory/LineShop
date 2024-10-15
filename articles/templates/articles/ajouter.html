@@ -1,0 +1,136 @@
+
+{% extends 'articles/baseG.html' %}
+{% load static %}
+
+{% block title %}Ajouter{% endblock %}
+
+    {% block contentbase %}
+       
+
+        <section class="" style="padding-top: 120px;" >
+
+            <h1>Ajouter un article</h1>
+        
+           
+        
+            
+            <div class="container"> 
+                <form method="post" class="container text-primary border border-w-9 border-dark  rounded mb-3 " style="background-color: rgb(64, 64, 68);" enctype= "multipart/form-data" >
+                    
+                    {% csrf_token %}
+                    <div class="m-3">
+                        <div class="row m-3 mt-3">
+                                                 
+                            <div class="col m-3">
+                                
+                                {{ form.categorie.label_tag }}
+                                {{ form.categorie }}
+                                
+                            </div>
+                            <div class="col m-3">
+                                
+                                {{ form.type.label_tag }}
+                                {{ form.type }}
+                                
+                            </div>
+                            <div class="col m-3">
+                                
+                                {{ form.model.label_tag }}
+                                {{ form.model }}
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="m-3">
+                        <div class="row m-3 mt-3">
+                                                 
+
+
+                            <div class="col m-3">
+                                
+                                {{ form.marque.label_tag }}
+                                {{ form.marque }}
+                            </div>
+
+                            <div class="col m-3">
+                                {{ form.image.label_tag }}
+                                {{ form.image }}
+                                
+                            </div>
+
+                            <div class="col m-3">
+                                
+                                {{ form.prix.label_tag }}
+                                {{ form.prix }}
+                            </div>
+
+                          
+                        </div>
+                    </div>
+        
+    
+        
+                    <div class="m-3">
+                        <div class="row m-3 mt-3">
+                                                 
+                            
+                            <div class="col m-3">
+                                
+                                {{ form.description.label_tag }}
+                                {{ form.description }}
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-3">
+                        <div class="row m-3 mt-3">
+
+                            <div class="col m-3">
+                                
+                                {{ form.specificité.label_tag }}
+                                {{ form.specificité }}
+                                
+                            </div>
+                                                 
+                            <div class="col m-3">
+                                
+                                {{ form.enpromo.label_tag }}
+                                {{ form.enpromo }}
+                            </div>
+                            <div class="col m-3">
+                                
+                                {{ form.prix_promo.label_tag }}
+                                {{ form.prix_promo }}
+                                
+                            </div>
+                            <div class="col m-3">
+                                
+                                {{ form.stock.label_tag }}
+                                {{ form.stock }}
+                                
+                            </div>
+                          
+                        </div>
+                    </div>
+        
+        
+        
+                    <div class="row">
+                        <div class="col-5"></div>
+                        <div class="col-7">
+                            <div class="mb-3">
+                                <button type="" class="btn btn-primary">Ajouter</button>
+                            </div>
+                        </div>
+                    </div>
+        
+                           
+                </form>
+            </div>
+        
+        </section>
+
+        
+
+
+    {% endblock %}

@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'articles/style.css' %}">
+    <title>LineShop</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark bg-body-tertiary fixed-top " >
+        
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand ">
+                <span >LineShop</span>
+                <img class="navbar-brand" src="{% static 'articles/logo1.png' %}"alt="logo" style="height: 50px;">
+            </a>     
+            <span class="navbar-brand text-primary ">
+                {% block content4 %}
+                <p>  <i class="fas fa-user-circle fa-2x ps-3" ></i><br> {{ user.first_name }} </p>
+                {% endblocknav-item %}
+            </span>
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+           
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                   
+                    <li class="nav-item" >
+                        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Acceuil</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">
+                              Electroniques
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{% url 'electroniques' %}">Electroniques</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><h5 class="dropdown-header">Categories</h5></li>
+                              <li><a class="dropdown-item" href="{% url 'electroniques' %}#telephones">Telephone</a></li>
+                              <li><a class="dropdown-item" href="{% url 'electroniques' %}#ordinateurs">Ordinateur</a></li>
+                              <li><a class="dropdown-item" href="{% url 'electroniques' %}#airpods">Airpods</a></li>
+                              <li><a class="dropdown-item" href="{% url 'electroniques' %}#casques">Casques</a></li>
+                            </ul>
+                          </div>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Modes</a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{% url 'modes' %}">Modes</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><h5 class="dropdown-header">Categories</h5></li>
+                              <li><a class="dropdown-item" href="{% url 'modes' %}#shoes">Shoes</a></li>
+                              <li><a class="dropdown-item" href="{% url 'modes' %}#habits">Habits</a></li>
+                              <li><a class="dropdown-item" href="{% url 'modes' %}#accessoires">Accessoires</a></li>
+                            </ul>
+                          </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#">Apropos</a>
+                    </li>
+                  
+                    <li class="nav-item">
+                        <a class="nav-link active " href="{% url 'connexion' %}">Connexion   |</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active " href="{% url 'deconnexion' %}">Deconnexion</a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+            
+            <form class="d-flex" role="search">
+                <input type="search" class="form-control me-2" placeholder="Recherche" aria-label="Search"  >
+                <button class="btn btn-outline-light border-light text-primary " >rechercher</button>
+            </form>
+            <!-- Pour l'affichage du nombre d'article  
+            {% block content9 %}
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ nbrArt }}20
+                <span class="visually-hidden">unread messages</span>
+            </span>
+            {% endblock %}
+            -->
+            <a href="{% url 'panier' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-cart-fill " viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                </svg>
+        
+            </a>
+
+        </div> 
+    </nav>
+
+    <section>
+        
+    </section>
+
+</body>
+<footer>
+    <div class="container-fluid bg-dark text-primary text-center justify-content-center " style="padding: 30px;">
+        <div class="row">
+            <div class="col-4 ">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">X</a>
+                <a href="#">Tiktok</a>
+            </div>
+            <div class="col-4 ">
+                <h2>En savoir plus?</h2>
+                <p>Vous voulez des informations sur notre entreprises et de ses differents services</p>
+                <a href="#">Apropos</a>
+            </div>
+            <div class="col-4 ">
+                <h2>Vous avez une question ?</h2>
+                <p>Vous voulez nous soumettre une bon plan de business ? Ou juste soumettre une remarque?</p>
+                <a href="#">Contactez-nous</a>
+            </div>
+    
+        </div>
+        
+    </div>
+    <p class=" bg-dark text-primary text-center justify-content-center " style="padding-bottom: 15px;" > Copyrith 2024 Bangoura Ibrahima Sory , Tous droits réservés </p>
+</footer>
+</html>
