@@ -1,0 +1,30 @@
+# Environnement virtuel
+env/
+venv/
+__pycache__/
+*.pyc
+
+# Fichiers de base de données
+*.sqlite3
+
+# Fichiers sensibles
+.env
+
+# Fichiers de migration
+*/migrations/*
+!*/migrations/__init__.py  # Conserver les fichiers d'initialisation
+
+# Fichiers statiques
+staticfiles/
+static/
+
+# Fichiers médias
+media/
+
+# IDEs et éditeurs
+.vscode/
+.idea/
+*.swp
+
+# Fichiers de cache
+*.log
