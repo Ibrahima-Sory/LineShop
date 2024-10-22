@@ -20,8 +20,8 @@
             
             <div class="col-md-5  col-sm-12 bg-dark text-white p-4 mt-3"  >
                 <div class="" style="margin: 10px;">
-                    <H3>Total:{{prixTotal}} FG</H3>
-                    <button class="bg-success  border rounded p-2 pe-5 ps-5" >Paiement</button>
+                    <H3>Total: <span id="prixTotal" > {{prixTotal}} </span>  FG</H3>
+                    <button class="bg-success  border rounded p-2 pe-5 ps-5" onclick="validerPanier()"  >Valider</button>
                 </div>   
     
                 <div class="">
@@ -39,12 +39,14 @@
             </div>
             <div class="col-2"></div>
             
-            {% for article in articlesPanier %}    
-            <div class="col-md-5  col-12 ms-1 me-5" style="margin: 20px;">
+            {% for article in articlesPanier %}  
+             
+            <div class="col-md-5  col-12 ms-1 me-5" style="margin: 20px;" >
+                <div class="articles"> 
                 <div class="row">
                 
                     <div class="card border-dark" style="margin: 5px;">
-                        <div class="row " >
+                        <div class="row " class="articles" >
                             <div class="card-item col-md-2 col-xs-2 col-5  "  style="padding: 5px;" >
                                 <img src="{{ article.article.image.url }}" alt="imageArticle" class="img-fluid rounded-center " style="height: 80px;" >
                             </div>
@@ -52,15 +54,18 @@
                                 <span> {{article.article.model}}</span>
                                 
                             </div>
-                            <div class="card-header col-md-3 col-xs-12 col-12 border">
+                            <div class="card-header  col-md-3 col-xs-12 col-12 border">
                                     Quantité:
+                                    <!-- 
                                     <form role="post">
                                          {% csrf_token %} 
                                         
-                                        <input type="number" id="quantite-{{article.id}}" min="1" value="{{ article.quantite }}" max="50" onchange="quantite_ajour({{ article.id }})" class="form" >
-                                   
+                                        <input type="number" id="quantite-{{article.id}}" min="1" value="{{ article.quantite }}" max="50" onchange="quantite_ajour({{article.id}})" class="form" >
+                                        
                                       
-                                    </form>  
+                                    </form>  -->
+
+                                     <input type="number" class="quantite"  min="1" value="{{ article.quantite }}" max="50" onchange="total_quantité()" data-prix="{{article.article.prix}}" data-id ="{{article.id}}" > 
                                     
                             </div>
                             <div class="card-header  col-md-3 col-xs-10 col-10 border" >
@@ -88,8 +93,9 @@
                     </div>
 
                 </div>
+                </div>
             </div> 
-            
+             
             
             {% empty %}
 
@@ -108,7 +114,7 @@
 
             {% endblock %}         
 
-            <a class="text-decoration-none text-dark p-2 pe-5 ps-5" href="{% url 'index' %}"><button class="bg-secondary  border rounded p-2 pe-5 ps-5" > Continuer les achats  </button> </a>
+            <a class="text-decoration-none text-dark p-2 pe-5 ps-5" href="{% url 'index' %}"><button class="bg-secondary  border rounded p-2 pe-5 ps-5" onclick="quantite_ajour()" > retour  </button> </a>
          
         </div>
     </div>

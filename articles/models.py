@@ -57,16 +57,17 @@ class Panier(models.Model):
     )
     articles = models.ManyToManyField(Articles , through='ArticlesPanier')
     #nbrArticles = models.IntegerField(blank=True, null=True)
+    prixTotal = models.PositiveIntegerField(default=0)
 
     @property
     def prix_total(self):
-        total = 0
+        prixTotal = 0
         for article_panier in self.articlespanier_set.all():
             if article_panier.article.enpromo:
-                total += article_panier.article.prix_promo * article_panier.quantite
+                prixTotal += article_panier.article.prix_promo * article_panier.quantite
             else:
-                total += article_panier.article.prix * article_panier.quantite
-        return total
+                prixTotal += article_panier.article.prix * article_panier.quantite
+        return prixTotal
     
     
     def affichage_articles(self):
@@ -83,14 +84,13 @@ class ArticlesPanier(models.Model):
     def __str__(self):
         return self.article.model
     
-class AchatArticle(models.Model):
+
+
+class AchatPanier(models.Model):
     
-    article = models.ForeignKey(Articles, on_delete=models.CASCADE)
-    quantite = models.PositiveIntegerField(default=1)
+    utilisateur = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    articles = models.JSONField()
     total = models.PositiveIntegerField(default=0 ,blank=True, null=True)
-    numero = models.IntegerField(blank=True, null=True)
-    email = models.EmailField(max_length=50 ,blank=True, null=True)
-    adresse = models.CharField(max_length=50 ,blank=True, null=True)
     date = models.DateTimeField(default=timezone.now)
     STATUS_CHOICES = [
     ('En attente', 'En attente'),
@@ -98,12 +98,9 @@ class AchatArticle(models.Model):
     ('Livré', 'Livré'),
     ]
     statue = models.CharField(max_length=50, choices=STATUS_CHOICES,default="En attente")
-    
+
     def __str__(self):
-        return f"{self.article.model} (x{self.quantite})" 
-
-    def prix_total(self):
-        return self.quantite * self.article.prix    
-
+        return f"{self.articles} (x{self.total})"   
+    
 
 

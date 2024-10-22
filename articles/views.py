@@ -1,7 +1,7 @@
 from django.shortcuts import render , get_object_or_404 ,redirect 
 from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
-from .models import Categories , Articles , Panier,ArticlesPanier, Annonces, AchatArticle
+from .models import Categories , Articles , Panier,ArticlesPanier, Annonces , AchatPanier
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 import json
@@ -161,9 +161,15 @@ def panier(request):
     #else:
     #    nbrArt = 0
     #print(f"{articlesPanier}____________")
+    #articlesPanier = ArticlesPanier.objects.all()
+    #prixTotalP = sum( (article.article.prix_promo if article.article.enpromo  else article.article.prix ) * article.quantite for article in articlesPanier )
+    panier = Panier
+    prix= panier.prixTotal = prixTotal
+    #panier.save()
+
 
     def prixTotal_formater():
-        return f"{prixTotal:,.0f}".replace(",", " ")
+        return f"{prix:,.0f}".replace(",", " ")
     
     nbrArtTotal = sum(article.quantite for article in articlesPanier)
     
@@ -248,9 +254,17 @@ def change_quantite(request):
         articlePanier.quantite = quantite
         articlePanier.save()
 
+        articlesPanier = ArticlesPanier.objects.all()
+        prixTotal = sum( (article.article.prix_promo if article.article.enpromo  else article.article.prix ) * article.quantite for article in articlesPanier )
+#        articlesPanier.save()
+#        Panier.prixTotal = prixTotalP
+#        Panier.save()
+
+        def prixTotal_formater():
+           return f"{prixTotal:,.0f}".replace(",", " ")
         
         
-        return JsonResponse({'success': True})
+        return JsonResponse({'success': True , 'prixTotal': prixTotal_formater() })
 
     return JsonResponse({'success':False}, status = 400)
 
@@ -274,56 +288,69 @@ def recherche(request):
 
     return render(request, 'articles/recherche.html',context )
 
-def achat1(request, idAchat):
-    articleA = get_object_or_404(AchatArticle, id=idAchat)
 
 
-def achat(request, idAchat):
-    article = Articles.objects.get(id= idAchat)
-    #articleA = get_object_or_404(AchatArticle, id=idAchat)
-    #articleA = Articles.objects.all()
-    quantite = 1
-    achat , created = AchatArticle.objects.get_or_create(
-    article= article,
-    quantite = quantite,
-    defaults= {
-        "total": article.prix * quantite
-    }
-        )
-    #articleAchat = AchatArticle.objects.all()
+
 
     
 
-    if request.method=="POST":
-        data = json.loads(request.body)
-        articleid = data["article_id"]
-        quantite = data["quantite"]
-       
-        achat , created = AchatArticle.objects.get_or_create(
-        article= articleid,
-        quantite = quantite,
-        defaults= {
-            "total": article.prix * quantite
-        }
-            )
-        
+def validerPanier(request):
+    if request.user.is_authenticated :
+        panierUser = Panier.objects.get(user = request.user)
+        totalPanier = 0
+        articlesPanier = ArticlesPanier.objects.filter(panier=panierUser)
+
+        for i in articlesPanier.all():
+            article = i.article
+
+            # Vérifier la disponibilité en stock
+            if i.quantite > article.stock:
+                messages.info(request,f"La quantité demandée pour l'article {article.model} dépasse le stock disponible.")
+                continue  
+
+            #totalArticle = i.quantite * i.article.prix
+            # Calculer le prix total de l'article
+            totalPanier += i.quantite * i.article.prix
 
 
-       
+        achat = AchatPanier.objects.create(
+            utilisateur = request.user,
+            total = totalPanier ,
+            articles = [( f"Article No: {i.article.id}" ,f"Nom: {i.article.model}"  ,f"quantité: {i.quantite}" ) for i in articlesPanier.all() ],
+            statue = "En attente de paiement"
+        )   
 
-        return JsonResponse({'success': True , 'quantite':quantite })
-        
-    #quantiteB = achat.quantite
-    articleA = Articles.objects.filter(id = achat.id)
+        # Réinitialiser le panier après validation
+        Panier.objects.filter(user=request.user).delete()
+
+        return JsonResponse({ 'success':True ,  'totalPanier': totalPanier , 'achat_id':achat.id })
+
+    else:
+
+        messages.info(request,"Vous devez être connecter pour valider votre panier !")  
+        return redirect('connection')  
+
+def commande(request,id):
+    if request.user.is_authenticated :
+            articlesPanier = ArticlesPanier.objects.all()
+    nbrArt = 0
+    for article in articlesPanier:
+        nbrArt += 1
+    #panierUser = Panier.objects.get(user = request.user)
+    articlesAchat= AchatPanier.objects.get(id = id)
     
-    context = {
-        "article":article,
-        "quantite":quantite,
-        "articleA":achat,
-        #'achat': quantiteB
+    total = articlesAchat.total
+    statue = articlesAchat.statue
+    context ={
+        'articles':articlesAchat,
+        'total':total ,
+        'statue':statue,
+        'nbrArt':nbrArt,
+
     }
 
-    return render(request,"articles/achat.html", context)
+    return render(request,"articles/commande.html",context)
+
 
 def gestion(request):
 

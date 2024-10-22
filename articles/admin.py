@@ -20,7 +20,7 @@ admin.site.register(models.Articles)
 admin.site.register(models.Categories)
 admin.site.register(models.ArticlesPanier)
 admin.site.register(models.Panier ,PanierAdmin)
-admin.site.register(models.AchatArticle)
+admin.site.register(models.AchatPanier)
 admin.site.register(models.Annonces)
 
 
