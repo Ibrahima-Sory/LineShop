@@ -7,15 +7,17 @@
     {% block contentbase %}
        
 
-        <section class="" style="padding-top: 120px;" >
-
+        <section class="" style="padding-top: 120px; " >
+            <div class="m-3">
+                <button class="btn btn-outline-dark border-dark text-primary px-5" > <a class="text-decoration-none" href="{% url 'gestion' %}">Retour</a></button>
+            </div>
             <h1>Ajouter un article</h1>
         
            
         
             
-            <div class="container"> 
-                <form method="post" class="container text-primary border border-w-9 border-dark  rounded mb-3 " style="background-color: rgb(64, 64, 68);" enctype= "multipart/form-data" >
+            <div class="container" > 
+                <form method="post" class="container text-white border border-w-9 border-dark  rounded mb-3 " style="background-image: url('/static/articles/flou.avif'); background-size: cover;" enctype= "multipart/form-data" >
                     
                     {% csrf_token %}
                     <div class="m-3">

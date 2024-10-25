@@ -75,7 +75,9 @@
             <form method="GET" action="{% url 'recherche' %}" class="d-flex" role="search">
                 
                 <input type="search" class="form-control me-2" name="r" placeholder="Recherche" aria-label="Search" value="{{ request.GET.r }}" >
-                <button class="btn btn-outline-light border-light text-primary " >rechercher</button>
+                <button class="btn btn-outline-primary border-light text-white " ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                  </svg></button>
             </form>
             <!-- Pour l'affichage du nombre d'article  
             {% block content9 %}
@@ -85,21 +87,21 @@
             </span>
             {% endblock %}
             -->
-            <a class="ps-5" href="{% url 'panier' %}">
+            <a class="ps-5 position-relative"  href="{% url 'panier' %}">
                 
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-cart-fill " viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="35" fill="blue" class="bi bi-cart-fill " viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                 </svg><br>
                 
-                <span class="badge bg-white text-danger ms-3 ps-1  border-rounde" style="position: absolute ; z-index:2 ; " > {{ nbrArt }} </span>
+                <span class="badge bg-light text-dark ms-3 ps-1  border-rounde" style="position: absolute; top: -10px; right: 14px; z-index: 2;"> {{ nbrArt }} </span>
         
             </a>
 
             
             
-            <span class="navbar-brand text-primary ps-5">
+            <span class="navbar-brand ps-5">
                 {% block content50 %}
-                <p><a class="text-decoration-none" href="{% url 'profil' %}">  <i class="fas fa-user-circle fa-2x ps-4" ></i> <br> {{ user.last_name }} </a> </p>
+                <p><a class="text-decoration-none text-white" href="{% url 'profil' %}">  <i class="fas fa-user-circle fa-2x ps-4" ></i> <br> {{ user.last_name }} </a> </p>
                 {% endblock %}
             </span>
 

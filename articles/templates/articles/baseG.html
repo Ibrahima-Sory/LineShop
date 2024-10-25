@@ -10,118 +10,57 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title> {% block title%} {% endblock %} </title>
 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Primary Meta Tags -->
+    <title>Volt - Free Bootstrap 5 Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
+    <meta name="author" content="Themesberg">
+    <meta name="description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+    <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard" />
+    <link rel="canonical" href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://demo.themesberg.com/volt-pro">
+    <meta property="og:title" content="Volt - Free Bootstrap 5 Dashboard">
+    <meta property="og:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+    <meta property="og:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://demo.themesberg.com/volt-pro">
+    <meta property="twitter:title" content="Volt - Free Bootstrap 5 Dashboard">
+    <meta property="twitter:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+    <meta property="twitter:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="120x120" href="../../assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="../../assets/img/favicon/safari-pinned-tab.svg" color="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Sweet Alert -->
+    <link type="text/css" href= "{% static '../../vendor/sweetalert2/dist/sweetalert2.min.css' %} " rel="stylesheet">
+    
+    <!-- Notyf -->
+    <link type="text/css" href= "{% static '../../vendor/notyf/notyf.min.css' %}" rel="stylesheet">
+    
+    <!-- Volt CSS -->
+    <link type="text/css" href= "{% static '../../css/volt.css' %} " rel="stylesheet">
+    
+    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+    
+
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark bg-body-tertiary fixed-top " >
-        
-        <div class="container-fluid  "  >
-            <a href="{% url 'index' %}" class="navbar-brand ">
-                <span >LineShop</span>
-                <img class="navbar-brand" src="{% static 'articles/logo1.png' %}"alt="logo" style="height: 50px;">
-            </a>     
-
-           
-            <div class=" navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-5">
-                   
-                    <li class="nav-item" >
-                        <a class="nav-link active" aria-current="page" href="{% url 'gestion' %}">Gestionnaire</a>
-                    </li>
-                    <li class="nav-item ms-5">
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">
-                              Filtre
-                            </a>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="{% url 'electroniques' %}">Articles</a></li>
-                              <li><hr class="dropdown-divider"></li>
-                              <li><h5 class="dropdown-header">Categories</h5></li>
-                              <li><a class="dropdown-item" href="{% url 'gestionE' %}">Electroniques</a></li>
-                              <li><a class="dropdown-item" href="{% url 'gestionM' %}">Modes </a></li>
-                              
-                            </ul>
-                          </div>
-                        
-                    </li>
-
-                    <form method="GET" action="{% url 'rechercheG' %}" class="d-flex ms-5" role="search">
-                
-                        <input type="search" class="form-control me-2" name="r" placeholder="Recherche" aria-label="Search" value="{{ request.GET.r }}" >
-                        <button class="btn btn-outline-light border-light text-primary " >rechercher</button>
-                    </form>
-
-                    <li class="nav-item ms-5 bg-primary" >
-                        <a class="nav-link active" aria-current="page"  href="{% url 'ajouter' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
-                          </svg>  Ajouter un nouvel article </a>
-                    </li>
-                    <!--  <li class="nav-item ms-5 ps-5" >
-                        
-                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalNotification">
-                            Notification
-                        </button>
-
-                        
-                        <div class="modal fade" id="ModalNotification" tabindex="-1" aria-labelledby="ModalNotification" aria-hidden="true"  >
-                            <div class="modal-dialog" >
-                                <div class="modal-content" >
-                                    <div class="modal-header">
-                                         <h5 class="modal-title" id="ModalNotification"> Notifications </h5>
-                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                         <p> body notifs </p>
-                                                        
-                                           
-
-                     
-                                        
-                                    </div>
-                                    <div class="modal-footer">
-                                     
-                                           fin notifs
-
-                                    </div>
-                                </div>    
-                                 
-                            </div>
-                        </div> 
-
-                        </li>
-                    Button fin modal -->
-                         
-                    
-               
-                  
-                    
-                </ul>
-            </div>
-            
-          
-
-
-
-
-        </div> 
-        <div id="messageS" >
-            <div  style="position: absolute;z-index: 2; top: 10px; left:500px ; " >
-                {% for message in messages %}
-                    <div class="alert alert-success">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-    </nav>
     
-    
-    
- 
 
-
+    {% include "includes/tableau.html" %}
                                 
     {% block contentbase %}
    

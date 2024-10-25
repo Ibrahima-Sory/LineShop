@@ -385,6 +385,78 @@ def gestionM(request):
 
     return render(request,"articles/gestion.html" ,context)
 
+def gestionTelephone(request):
+    articles = Articles.objects.filter(type ='Telephone')
+
+    context = {
+        "articles": articles,
+    }
+
+    return render(request,"articles/gestion.html" ,context)
+
+def gestionOrdi(request):
+    articles = Articles.objects.filter(type ='Ordinateurs')
+
+    context = {
+        "articles": articles,
+    }
+
+    return render(request,"articles/gestion.html" ,context)
+
+def gestionAirpods(request):
+    articles = Articles.objects.filter(type ='Airpods')
+
+    context = {
+        "articles": articles,
+    }
+
+    return render(request,"articles/gestion.html" ,context)
+
+def gestionCasque(request):
+    articles = Articles.objects.filter(type ='Casques')
+
+    context = {
+        "articles": articles,
+    }
+
+    return render(request,"articles/gestion.html" ,context)
+
+def gestionMontre(request):
+    articles = Articles.objects.filter(type ='Montres')
+
+    context = {
+        "articles": articles,
+    }
+
+    return render(request,"articles/gestion.html" ,context)
+
+def gestionShoes(request):
+    articles = Articles.objects.filter(type ='Shoes')
+
+    context = {
+        "articles": articles,
+    }
+
+    return render(request,"articles/gestion.html" ,context)
+
+def gestionHabits(request):
+    articles = Articles.objects.filter(type ='Habits')
+
+    context = {
+        "articles": articles,
+    }
+
+    return render(request,"articles/gestion.html" ,context)
+
+def gestionAccessoires(request):
+    articles = Articles.objects.filter(type ='Accessoires')
+
+    context = {
+        "articles": articles,
+    }
+
+    return render(request,"articles/gestion.html" ,context)
+
 def ajouter(request):
 
     if request.method == "POST":
