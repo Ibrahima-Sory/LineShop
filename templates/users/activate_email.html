@@ -1,0 +1,8 @@
+{% autoescape on %} 
+Hi {{ user.username }},  
+Clicquer sur le lien pour confirmer votre email,
+
+<p><a href="http://{{ domain }}/activate/{{ uid }}/{{ token }}">Confirmer votre email</a></p>
+
+Si c'est pas vous, ignorez juste cet email.
+{% endautoescape %}

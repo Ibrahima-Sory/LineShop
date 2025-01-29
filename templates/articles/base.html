@@ -1,0 +1,313 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'articles/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title> {% block title%} {% endblock %} </title>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
+<meta name="author" content="Themesberg">
+<meta name="description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+<meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard" />
+<link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-volt">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://demo.themesberg.com/volt-pro">
+<meta property="og:title" content="Volt - Free Bootstrap 5 Dashboard">
+<meta property="og:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+<meta property="og:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://demo.themesberg.com/volt-pro">
+<meta property="twitter:title" content="Volt - Free Bootstrap 5 Dashboard">
+<meta property="twitter:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
+<meta property="twitter:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon/apple-touch-icon.png">
+<!--<link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicon/favicon-32x32.png' %}">-->
+<!--<link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicon/favicon-16x16.png' %}">-->
+<link rel="manifest" href="{% static 'assets/img/favicon/site.webmanifest' %}">
+<link rel="mask-icon" href="{% static 'assets/img/favicon/safari-pinned-tab.svg' %}" color="#ffffff">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static '/assets/vendor/bootstrap/dist/css/bootstrap.min.css' %}">
+
+<link type="text/css" href="{% static 'assets/vendor/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet">
+
+<link type="text/css" href="{% static 'assets/vendor/notyf/notyf.min.css' %}" rel="stylesheet">
+<link type="text/css" href="{% static 'assets/css/volt.css' %}" rel="stylesheet">
+
+<!-- Specific Page JS goes HERE  -->    
+{% block stylesheets %}{% endblock stylesheets %}
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark bg-body-tertiary fixed-top " >
+        
+        <div class="container-fluid">
+            <a href="{% url 'index' %}" class="navbar-brand ">
+                <span >LineShop</span>
+                <img class="navbar-brand" src="{% static 'articles/logo1.png' %}"alt="logo" style="height: 50px;">
+            </a>     
+
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+           
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                   
+                    <li class="nav-item" >
+                        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Acceuil</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">
+                              Electroniques
+                              <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{% url 'electroniques' %}">Electroniques</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><h5 class="dropdown-header">Categories</h5></li>
+                              <li><a class="dropdown-item" href="{% url 'electroniques' %}#telephones">Telephone</a></li>
+                              <li><a class="dropdown-item" href="{% url 'electroniques' %}#ordinateurs">Ordinateur</a></li>
+                              <li><a class="dropdown-item" href="{% url 'electroniques' %}#airpods">Airpods</a></li>
+                              <li><a class="dropdown-item" href="{% url 'electroniques' %}#casques">Casques</a></li>
+                            </ul>
+                          </div>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Modes
+                                <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{% url 'modes' %}">Modes</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><h5 class="dropdown-header">Categories</h5></li>
+                              <li><a class="dropdown-item" href="{% url 'modes' %}#shoes">Shoes</a></li>
+                              <li><a class="dropdown-item" href="{% url 'modes' %}#habits">Habits</a></li>
+                              <li><a class="dropdown-item" href="{% url 'modes' %}#accessoires">Accessoires</a></li>
+                            </ul>
+                          </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#">Apropos</a>
+
+                    </li>
+                  
+                    <div  class="bg-danger text-primary" id="message"></div>
+                    
+                </ul>
+            </div>
+            
+            <form method="GET" action="{% url 'recherche' %}" class="d-flex" role="search">
+                
+                <input type="search" class="form-control me-2" name="r" placeholder="Recherche" aria-label="Search" value="{{ request.GET.r }}" >
+                <button class="btn btn-outline-primary border-light text-white " ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                  </svg></button>
+            </form>
+            
+            <!-- Pour l'affichage du nombre d'article  
+            {% block content9 %}
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ nbrArt }}20
+                <span class="visually-hidden">unread messages</span>
+            </span>
+            {% endblock %}
+            -->
+            <a class="ps-5 position-relative"  href="{% url 'panier' %}">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="35" fill="#f0bc74" class="bi bi-cart-fill " viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                </svg><br>
+                
+                {% if user.is_authenticated%}
+                <span class="badge bg-light text-dark ms-3 ps-1  border-rounde" style="position: absolute; top: -10px; right: 14px; z-index: 2;"> {{ nbrArt }} </span>
+                {% endif %}
+
+            </a>
+
+
+            <li class="navbar-brand dropdown ms-lg-3">
+                <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="media d-flex align-items-center">
+                    <img class="avatar rounded-circle" alt="Image placeholder" src="/static/assets/img/team/profile-picture-3.jpg">
+                    <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
+                      <span class="mb-0 font-small fw-bold text-gray-900">
+                        <strong class="text-white">{{ request.user.get_full_name }}</strong>
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
+                  <a class="dropdown-item d-flex align-items-center" href="{% url 'profil' %}">
+                    <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
+                    Mon Profil
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="{% url 'settings' %}">
+                    <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path></svg>
+                    Settings
+                  <div role="separator" class="dropdown-divider my-1"></div>
+                  {% if user.is_authenticated%}
+                  <a class="dropdown-item d-flex align-items-center" href="{% url 'deconnexion' %}">
+                    <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>                
+                    Se Deconnecter
+                  </a>
+                  {% else %}
+                  <a class="dropdown-item d-flex align-items-center" href="{% url 'connexion' %}">
+                    <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>                
+                    Se Connecter
+                  </a>
+                  {% endif %}
+                </div>
+              </li>
+
+        <!-- Button trigger modal -->
+        <!-- <span class="navbar-brand  ps-5">
+        <button class="btn btn-dark m-0 p-0 text-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            
+                {% block content55 %}
+                <p  > <i class="fas fa-user-circle fa-2x ps-2 " ></i> <br> {{ user.last_name }} </a> </p>
+                {% endblock %}
+            
+        </button>
+        </span>
+        
+         
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true " data-bs-backdrop="false" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1>Profil</h1><br>
+                    
+                   
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container p-3 border border-dark bg-light ">
+                        <div  class="ms-5 ps-5">
+
+                            <h1><i class="fas fa-user-circle fa-2x ps-5 ms-3 " >  </i></h1>
+                            <h5> {{ user.last_name }} {{ user.first_name }} </h5>
+                            
+                            <span class="ms-5" >{{ user.email }}</span>
+                           
+
+                        </div>
+                      
+ 
+            
+                        <div class="row mt-3">
+                            
+                     
+                            <div class="col"> Phone: {{ user.phone }} </div>
+                            <div class="col"> Adresse: {{ user.adresse }} </div>
+            
+                        </div>
+            
+                     
+                        
+                    </div>
+            
+                    <div class="row m-5">
+                        <div class="col-4"></div>
+                        <div class="col"> <a class="text-decoration-none text-dark" href="{% url 'deconnexion' %}"> <button class="btn btn-primary"> Deconnexion</button> </a></div>
+                    </div>
+            
+                    
+                    
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary px-5" data-bs-dismiss="modal">Close</button>
+ 
+                </div>
+            </div>
+            </div>
+        </div>
+         Fin Modal --> 
+           
+
+        </div> 
+        <div id="messageS" >
+            <div  style="position: absolute;z-index: 2; top: 10px; left:500px ; " >
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </nav>
+    
+    
+    
+ 
+
+
+                                
+    {% block contentbase %}
+   
+
+
+    {% endblock %}
+
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<footer>
+    <div class="container-fluid bg-dark text-white text-center justify-content-center " style="padding: 30px;">
+        <div class="row">
+            <div class="col-4 ">
+                <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                  </svg> </a><br>
+                <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                  </svg> </a><br>
+                <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                  </svg> </a><br>
+                <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16">
+                    <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
+                  </svg> </a><br>
+            </div>
+            <div class="col-4 ">
+                <h2>En savoir plus?</h2>
+                <p>Vous voulez des informations sur notre entreprises et de ses differents services</p>
+                <a href="#">Apropos</a>
+            </div>
+            <div class="col-4 ">
+                <h2>Vous avez une question ?</h2>
+                <p>Vous voulez nous soumettre une bon plan de business ? Ou juste soumettre une remarque?</p>
+                <a href="#">Contactez-nous</a>
+            </div>
+    
+        </div>
+        <hr>
+    </div>
+    
+    <div class=" bg-dark text-white text-center justify-content-center " style="padding-bottom: 15px;" > © Copyrith 2024 Bangoura Ibrahima Sory , Tous droits réservés </div>
+</footer>
+<script src="{% static 'articles/script.js' %}" ></script>
+</html>

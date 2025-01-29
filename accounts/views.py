@@ -2,10 +2,11 @@ from django.shortcuts import render , get_object_or_404 , redirect
 from django.http import HttpResponse
 from .models import UserShop 
 from  articles.models import ArticlesPanier , Panier
-from .forms import EnregistrementForm, ConnexionForm
+from .forms import EnregistrementForm, ConnexionForm, CustomUserForm
 from django.contrib.auth import authenticate , login , logout
 from django.contrib import messages 
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth.views import PasswordResetView
 
 # Create your views here.
 
@@ -61,3 +62,35 @@ def deconnexion(request):
     messages.info(request, "Vous êtes deconnectés !!!")
 
     return redirect('index')
+
+def modifier(request):
+
+    if request.method == 'POST':
+        form = CustomUserForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            print("le formulaire est valide")
+            return redirect('profil')
+            
+    else:
+        form = CustomUserForm(instance=request.user)
+        print("le formulaire n'est pas valide")
+
+    
+    context = {
+        "form":form
+        }
+    return render(request, "articles/modifierUser.html", context)
+
+
+def settings(request):
+
+
+    return render(request, "accounts/settings.html")
+
+
+class CustomPasswordResetView(PasswordResetView):
+    html_email_template_name = 'registration/password_reset_email.html'
+    email_template_name = 'registration/password_reset_email.txt'
+
+        

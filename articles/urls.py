@@ -14,6 +14,7 @@ urlpatterns = [
     path("panier/change_quantite/", views.change_quantite, name="change_quantite"),
     path("panier/valider/", views.validerPanier, name="validerPanier"),
     path("panier/valider/commmande/<int:id>/", views.commande, name="commande"),
+    path("panier/valider/commmande/historique/", views.histCommande, name="histCommande"),
     path("remove/<int:idSup>/" , views.supPanier , name="supPanier"),
     path("recherche/", views.recherche , name="recherche"),
     path("gestion/", views.gestion , name="gestion"),

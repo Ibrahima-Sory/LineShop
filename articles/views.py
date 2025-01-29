@@ -331,8 +331,13 @@ def validerPanier(request):
         return redirect('connection')  
 
 def commande(request,id):
+    articlesPanier = ArticlesPanier.objects.all()
+    nbrArt = 0
+    for article in articlesPanier:
+        nbrArt += 1
+
     if request.user.is_authenticated :
-            articlesPanier = ArticlesPanier.objects.all()
+        articlesPanier = ArticlesPanier.objects.all()
     nbrArt = 0
     for article in articlesPanier:
         nbrArt += 1
@@ -350,6 +355,15 @@ def commande(request,id):
     }
 
     return render(request,"articles/commande.html",context)
+
+def histCommande(request):
+    articlesPanier = ArticlesPanier.objects.all()
+    nbrArt = 0
+    for article in articlesPanier:
+        nbrArt += 1
+
+    commandes = AchatPanier.objects.filter(utilisateur=request.user).order_by('date')
+    return render(request, 'articles/histCommande.html', {'commandes': commandes ,'nbrArt': nbrArt})
 
 
 def gestion(request):

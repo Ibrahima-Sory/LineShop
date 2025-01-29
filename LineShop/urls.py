@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import include ,path
 from django.conf import settings
 from django.conf.urls.static import static 
+from django.contrib.auth import views as auth_views
+from accounts.views import CustomPasswordResetView 
 
 
 
@@ -27,5 +29,45 @@ urlpatterns = [
     path('accounts', include('accounts.urls')),
     #path('articles/', include('articles.urls')),
     path('admin/', admin.site.urls),
+   # Vue pour entrer l’email pour la réinitialisation du mot de passe
+    path(
+        'password_reset/',
+        auth_views.PasswordResetView.as_view(
+            template_name='registration/password_reset_form.html',  # Page de saisie de l'email
+            html_email_template_name='registration/password_reset_email.html',  # Template HTML
+        ),
+        name='password_reset'
+    ),
+
+    # Vue pour informer que l’email de réinitialisation a été envoyé
+    path(
+        'password_reset/done/',
+        auth_views.PasswordResetDoneView.as_view(
+            template_name='registration/password_reset_done.html'
+        ),
+        name='password_reset_done'
+    ),
+
+    # Vue pour entrer le nouveau mot de passe à l’aide du lien envoyé par email
+    path(
+        'reset/<uidb64>/<token>/',
+        auth_views.PasswordResetConfirmView.as_view(
+            template_name='registration/password_reset_confirm.html'
+        ),
+        name='password_reset_confirm'
+    ),
+
+    # Vue pour confirmer que le mot de passe a été réinitialisé avec succès
+    path(
+        'reset/done/',
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name='registration/password_reset_complete.html'
+        ),
+        name='password_reset_complete'
+    ),
+
+    #path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),   
+
     
+
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,75 @@
+
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Gestion{% endblock %}
+
+    {% block content %}
+
+    
+
+    <section style="margin-top: 150px;" >
+
+        <div class="m-3">
+            <button type="button" class="btn btn-secondary"  > <a class="text-decoration-none" href="{% url 'gestion' %}">Retour</a></button>
+        </div>
+        <h2> Resultat pour  " {{ recherche }} "</h2>
+        
+        <div class="table-responsive py-4">
+            <table class="table table-flush" id="datatable">
+                <thead class="thead-light " >
+                <tr >
+                    <th scope="col">#</th>
+                    <th >Image</th>
+                    <th >Categorie</th>
+                    <th >Model</th>
+                    <th >Type</th>
+                    <th >Description</th>
+                    <th >Marque</th>
+                    <th >Prix</th>
+                    <th >Specificité</th>
+                    <th >En Promo ?</th>
+                    <th >Prix promo </th>
+                    <th >Stock</th>
+                    <th >Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for article in articles %}
+                
+                    <tr >
+                    <th > {{ forloop.counter }} </th>
+                    <td ><img src="{{ article.image.url }}" alt="imageArticle" class="img-fluid rounded-center " style="height: 80px;" > </td>
+                    <td > {{ article.categorie }} </td>
+                    <td > {{ article.model }} </td>
+                    <td > {{ article.type }} </td>
+                    <td > {{ article.description }} </td>
+                    <td > {{ article.marque }} </td>
+                    <td > {{ article.prix_formater}} </td>
+                    <td > {{ article.specificité }} </td>
+                    <td > {{ article.enpromo }} </td>
+                    <td > {{ article.prixPromo_formater }} </td>
+                    <td > {{ article.stock }} </td>
+                    <td >
+                         <button class="btn btn-outline-dark border-dark m-2" > <a href="{% url 'modifierArt' article.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                      </svg></a> </button> 
+                      <button class="btn btn-outline-dark border-dark m-2"> <a href="{% url 'supArticle' article.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" fill="red" class="bi bi-trash-fill " viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                      </svg></a> </button>
+                    </td>
+                    </tr>
+
+                {% endfor %}
+               
+
+                </tbody>
+            </table>
+            </div>
+
+
+    </section>
+
+  
+
+{% endblock %}
